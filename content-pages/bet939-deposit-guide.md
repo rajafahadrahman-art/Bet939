@@ -1,6 +1,6 @@
 ---
 page_name: "Bet939 Deposit Guide"
-page_type: "general-guide"
+page_type: "Deposit-guide"
 url: "/deposit-guide/"
 focus_keyword: "Bet939 deposit"
 secondary_keywords: []
