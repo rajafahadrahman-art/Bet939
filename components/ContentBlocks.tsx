@@ -1,4 +1,5 @@
 import type { Block } from "@/lib/content";
+import { cleanDisplayText } from "@/lib/display-text";
 import { linkifyText } from "@/lib/internal-links";
 import AppInfoTable from "./AppInfoTable";
 
@@ -17,7 +18,7 @@ export default function ContentBlocks({
         if (block.type === "paragraph") {
           return (
             <p key={index}>
-              {linkifyText(block.text, {
+              {linkifyText(cleanDisplayText(block.text), {
                 disableHrefs,
                 alreadyLinked: linked,
               })}
@@ -29,7 +30,7 @@ export default function ContentBlocks({
             <ul className="content-list" key={index}>
               {block.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
-                  {linkifyText(item, {
+                  {linkifyText(cleanDisplayText(item), {
                     disableHrefs,
                     alreadyLinked: linked,
                   })}
@@ -44,7 +45,7 @@ export default function ContentBlocks({
         if (block.type === "blockquote") {
           return (
             <blockquote key={index} className="review-quote">
-              {linkifyText(block.text, {
+              {linkifyText(cleanDisplayText(block.text), {
                 disableHrefs,
                 alreadyLinked: linked,
               })}

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type { ContentSection, ParsedContent } from "@/lib/content";
+import type { Block, ContentSection, ParsedContent } from "@/lib/content";
+import { cleanDisplayText } from "@/lib/display-text";
 import { PAGES } from "@/lib/pages";
+import AppInfoTable from "./AppInfoTable";
 import ContentBlocks from "./ContentBlocks";
 import ExternalActionButton from "./ExternalActionButton";
 import FAQAccordion from "./FAQAccordion";
@@ -43,6 +45,29 @@ const SCREENSHOTS = [
   },
 ];
 
+const FEATURE_ICONS: Record<string, string> = {
+  "Simple Mobile Dashboard": "📱",
+  "Multiple Game Categories": "🎮",
+  "Account and Wallet System": "💳",
+  "Live Gaming Options": "📹",
+  "Mobile-Friendly Performance": "⚡",
+  "Transaction History": "🧾",
+  "Login Security": "🔒",
+  "Promotion Section": "🎁",
+  "Customer Support Access": "💬",
+  "Regular Updates": "🔄",
+};
+
+const GAME_ICONS: Record<string, string> = {
+  "Hot Games": "🔥",
+  Slots: "🎰",
+  "Mini Games": "🎯",
+  "Fishing Games": "🎣",
+  "Live Games": "📹",
+  "Card Games": "🃏",
+  Sports: "🏆",
+};
+
 const BONUS_TITLES = new Set([
   "New-User Reward",
   "First-Deposit Bonus",
@@ -54,17 +79,43 @@ const BONUS_TITLES = new Set([
   "Event Promotions",
 ]);
 
-function SectionHeading({ section }: { section: ContentSection }) {
+const FEATURE_TITLES = new Set(Object.keys(FEATURE_ICONS));
+const GAME_TITLES = new Set(Object.keys(GAME_ICONS));
+
+function SectionHeading({
+  section,
+  subtitle,
+}: {
+  section: ContentSection;
+  subtitle?: string;
+}) {
   if (section.level === 2) {
-    return <h2 id={section.id}>{section.title}</h2>;
+    return (
+      <div className="section-header" style={{ textAlign: "left" }}>
+        <h2 id={section.id}>{section.title}</h2>
+        {subtitle ? <p className="section-subtitle">{subtitle}</p> : null}
+      </div>
+    );
   }
   return <h3 id={section.id}>{section.title}</h3>;
 }
 
 function PageCtas({ pageKey }: { pageKey: ParsedContent["key"] }) {
+  if (pageKey === "home") {
+    return (
+      <div className="btn-group">
+        <Link className="btn btn-gold" href={PAGES.download.path}>
+          Download Now
+        </Link>
+        <Link className="btn btn-outline" href={PAGES.login.path}>
+          Login
+        </Link>
+      </div>
+    );
+  }
   if (pageKey === "download") {
     return (
-      <div className="cta-row">
+      <div className="btn-group">
         <ExternalActionButton
           label="Download Now"
           ariaLabel="Download Bet939 externally"
@@ -77,7 +128,7 @@ function PageCtas({ pageKey }: { pageKey: ParsedContent["key"] }) {
   }
   if (pageKey === "login") {
     return (
-      <div className="cta-row">
+      <div className="btn-group">
         <ExternalActionButton
           label="Login Now"
           ariaLabel="Login to Bet939 externally"
@@ -90,7 +141,7 @@ function PageCtas({ pageKey }: { pageKey: ParsedContent["key"] }) {
   }
   if (pageKey === "ios" || pageKey === "pc") {
     return (
-      <div className="cta-row">
+      <div className="btn-group">
         <ExternalActionButton
           label="Open Bet939"
           ariaLabel="Open Bet939 externally"
@@ -101,31 +152,119 @@ function PageCtas({ pageKey }: { pageKey: ParsedContent["key"] }) {
       </div>
     );
   }
-  if (pageKey === "home") {
-    return (
-      <div className="cta-row">
-        <ExternalActionButton
-          label="Download Now"
-          ariaLabel="Download Bet939 externally"
-        />
-        <ExternalActionButton
-          label="Login Now"
-          ariaLabel="Login to Bet939 externally"
-          variant="outline"
-        />
-        <Link className="btn btn-outline" href={PAGES.download.path}>
-          Read Download Guide
-        </Link>
-      </div>
-    );
-  }
   return (
-    <div className="cta-row">
+    <div className="btn-group">
       <ExternalActionButton
         label="Open Bet939"
         ariaLabel="Open Bet939 externally"
       />
     </div>
+  );
+}
+
+function GuideCards() {
+  const cards = [
+    {
+      title: "Download Guide",
+      text: "Android APK steps, installation help, and update guidance.",
+      href: PAGES.download.path,
+      label: "Read Download Guide",
+    },
+    {
+      title: "Login Guide",
+      text: "Registration, login steps, OTP help, and account recovery.",
+      href: PAGES.login.path,
+      label: "Read Login Guide",
+    },
+    {
+      title: "Deposit Guide",
+      text: "JazzCash, Easypaisa, bank transfer, and pending payment help.",
+      href: PAGES.deposit.path,
+      label: "Read Deposit Guide",
+    },
+    {
+      title: "Withdrawal Guide",
+      text: "Cash-out steps, limits, verification, and common issues.",
+      href: PAGES.withdrawal.path,
+      label: "Read Withdrawal Guide",
+    },
+    {
+      title: "iOS Guide",
+      text: "Safari installation and developer trust steps for iPhone.",
+      href: PAGES.ios.path,
+      label: "Read iOS Guide",
+    },
+    {
+      title: "PC Guide",
+      text: "Browser access and Android emulator guidance for Windows.",
+      href: PAGES.pc.path,
+      label: "Read PC Guide",
+    },
+  ];
+
+  return (
+    <section className="content-section" aria-labelledby="quick-guides">
+      <div className="section-header">
+        <h2 id="quick-guides">Quick Access Guides</h2>
+        <p className="section-subtitle">
+          Jump to the supporting Bet939 pages when you need detailed steps
+        </p>
+      </div>
+      <div className="guide-grid">
+        {cards.map((card) => (
+          <article className="guide-card" key={card.href}>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+            <div className="cta-row">
+              <Link className="btn btn-outline btn-sm" href={card.href}>
+                {card.label}
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function blocksToPlain(blocks: Block[]): string {
+  return blocks
+    .map((block) => {
+      if (block.type === "paragraph") return block.text;
+      if (block.type === "list") return block.items.join(" ");
+      return "";
+    })
+    .filter(Boolean)
+    .join(" ");
+}
+
+function CardArticle({
+  section,
+  icon,
+  className,
+  linked,
+  disableHrefs,
+}: {
+  section: ContentSection;
+  icon?: string;
+  className: string;
+  linked: Set<string>;
+  disableHrefs: Set<string>;
+}) {
+  return (
+    <article className={className} key={section.id}>
+      {icon ? (
+        <div className="card-icon" aria-hidden="true">
+          {icon}
+        </div>
+      ) : null}
+      <h3 id={section.id}>{section.title}</h3>
+      <ContentBlocks
+        blocks={section.blocks}
+        disableHrefs={disableHrefs}
+        linked={linked}
+      />
+    </article>
   );
 }
 
@@ -137,139 +276,212 @@ export default function ArticleContent({
   const page = PAGES[content.key];
   const linked = new Set<string>();
   const disableHrefs = new Set<string>([page.path]);
+  const isHome = content.key === "home";
+
   const tocItems = content.toc.filter(
-    (item) => item.text !== "Frequently Asked Questions" || content.faqs.length,
+    (item) => item.text !== "App Overview" && item.text !== "App Information",
   );
 
-  // Inject TOC item and screenshots heading into TOC for homepage
-  const homeToc =
-    content.key === "home"
+  const displayToc =
+    isHome
       ? [
-          { id: "table-of-contents", text: "Table of Contents", level: 2 as const },
-          ...tocItems.filter((t) => t.text !== "App Overview"),
+          {
+            id: "table-of-contents",
+            text: "Table of Contents",
+            level: 2 as const,
+          },
+          ...tocItems,
           {
             id: "screenshots-heading",
             text: "Bet939 App Screenshots",
             level: 2 as const,
           },
-        ].filter((item, index, arr) => {
-          // Keep screenshots after features conceptually by sorting later in render; TOC order: keep natural with inject after features
-          return arr.findIndex((x) => x.id === item.id) === index;
-        })
+          {
+            id: "quick-guides",
+            text: "Quick Access Guides",
+            level: 2 as const,
+          },
+        ]
       : tocItems;
 
-  // Rebuild homepage TOC in better order
-  let displayToc = homeToc;
-  if (content.key === "home") {
-    const featureIdx = tocItems.findIndex((t) => t.text === "Main Features of Game");
-    const availableIdx = tocItems.findIndex((t) => t.text === "Available Games");
-    const before = tocItems.slice(0, availableIdx >= 0 ? availableIdx : featureIdx + 1);
-    const after = tocItems.slice(availableIdx >= 0 ? availableIdx : featureIdx + 1);
-    displayToc = [
-      { id: "table-of-contents", text: "Table of Contents", level: 2 },
-      ...before.filter((t) => t.text !== "App Overview"),
-      {
-        id: "screenshots-heading",
-        text: "Bet939 App Screenshots",
-        level: 2,
-      },
-      ...after,
-    ];
-  }
+  const overviewSection = content.sections.find(
+    (section) =>
+      section.isAppInfo ||
+      section.title === "App Overview" ||
+      section.title === "APK Information" ||
+      section.title === "iOS App Information",
+  );
+  const overviewTable = overviewSection?.blocks.find(
+    (block): block is Extract<Block, { type: "table" }> =>
+      block.type === "table",
+  );
+  const overviewRows = overviewTable?.rows ?? [];
 
-  const renderSection = (section: ContentSection) => {
+  const sections = content.sections.filter((section) => {
+    if (!overviewSection) return true;
+    if (section.id === overviewSection.id) return false;
+    if (section.title === "App Information" || section.title === "App Details") {
+      return false;
+    }
+    return true;
+  });
+
+  const nodes: ReactNode[] = [];
+  let i = 0;
+
+  while (i < sections.length) {
+    const section = sections[i];
+
+    if (isHome && section.title === "Available Games") {
+      nodes.push(<ScreenshotGallery key="screenshots" items={SCREENSHOTS} />);
+    }
+
     if (section.title === "Frequently Asked Questions") {
-      return (
-        <section key={section.id} aria-labelledby={section.id}>
-          <SectionHeading section={section} />
+      nodes.push(
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading
+            section={section}
+            subtitle="Common questions answered with the same approved wording"
+          />
           <FAQAccordion items={section.faqs || content.faqs} />
-        </section>
+        </section>,
       );
+      i += 1;
+      continue;
     }
 
     if (section.title === "User Reviews") {
-      return (
-        <section key={section.id} aria-labelledby={section.id}>
-          <SectionHeading section={section} />
+      nodes.push(
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading
+            section={section}
+            subtitle="Reviews shared in the approved homepage content"
+          />
           <ContentBlocks
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
           />
           <ReviewCards reviews={section.reviews || content.reviews} />
-        </section>
+        </section>,
       );
+      i += 1;
+      continue;
     }
 
-    if (section.title === "Bonuses and Rewards") {
-      // Collect following bonus H3s rendered as cards by caller grouping
-      return (
-        <section key={section.id} aria-labelledby={section.id}>
-          <SectionHeading section={section} />
-          <ContentBlocks
-            blocks={section.blocks}
-            disableHrefs={disableHrefs}
-            linked={linked}
-          />
-        </section>
-      );
-    }
-
-    if (BONUS_TITLES.has(section.title) && content.key === "home") {
-      return (
-        <article className="bonus-card" key={section.id}>
-          <h3 id={section.id}>{section.title}</h3>
-          <ContentBlocks
-            blocks={section.blocks}
-            disableHrefs={disableHrefs}
-            linked={linked}
-          />
-        </article>
-      );
-    }
-
-    return (
-      <section key={section.id} aria-labelledby={section.id}>
-        <SectionHeading section={section} />
-        <ContentBlocks
-          blocks={section.blocks}
-          disableHrefs={disableHrefs}
-          linked={linked}
-        />
-      </section>
-    );
-  };
-
-  const sections = content.sections;
-  const nodes: ReactNode[] = [];
-  let i = 0;
-  while (i < sections.length) {
-    const section = sections[i];
-
-    if (
-      content.key === "home" &&
-      section.title === "What Is Bet939 Game APP?"
-    ) {
+    if (section.title === "Main Features of Game") {
       nodes.push(
-        <div key="toc-anchor" id="table-of-contents">
-          <h2 className="sr-only">Table of Contents</h2>
-          <div className="mobile-toc-wrap">
-            <TableOfContents items={displayToc} />
-          </div>
-        </div>,
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading
+            section={section}
+            subtitle="Key platform features described in the approved guide"
+          />
+          <ContentBlocks
+            blocks={section.blocks}
+            disableHrefs={disableHrefs}
+            linked={linked}
+          />
+        </section>,
       );
+      i += 1;
+      const cards: ReactNode[] = [];
+      while (i < sections.length && FEATURE_TITLES.has(sections[i].title)) {
+        cards.push(
+          <CardArticle
+            key={sections[i].id}
+            section={sections[i]}
+            icon={FEATURE_ICONS[sections[i].title]}
+            className="feature-card"
+            linked={linked}
+            disableHrefs={disableHrefs}
+          />,
+        );
+        i += 1;
+      }
+      if (cards.length) {
+        nodes.push(
+          <div className="feature-grid" key="feature-grid">
+            {cards}
+          </div>,
+        );
+      }
+      continue;
     }
 
-    if (content.key === "home" && section.title === "Available Games") {
-      nodes.push(<ScreenshotGallery key="screenshots" items={SCREENSHOTS} />);
+    if (section.title === "Available Games") {
+      nodes.push(
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading
+            section={section}
+            subtitle="Concise category overview from the approved homepage content"
+          />
+          <ContentBlocks
+            blocks={section.blocks}
+            disableHrefs={disableHrefs}
+            linked={linked}
+          />
+        </section>,
+      );
+      i += 1;
+      const cards: ReactNode[] = [];
+      while (i < sections.length && GAME_TITLES.has(sections[i].title)) {
+        const gameSection = sections[i];
+        const summary = cleanDisplayText(blocksToPlain(gameSection.blocks)).slice(
+          0,
+          220,
+        );
+        cards.push(
+          <article className="category-card" key={gameSection.id}>
+            <div className="card-icon" aria-hidden="true">
+              {GAME_ICONS[gameSection.title]}
+            </div>
+            <h3 id={gameSection.id}>{gameSection.title}</h3>
+            <ContentBlocks
+              blocks={gameSection.blocks}
+              disableHrefs={disableHrefs}
+              linked={linked}
+            />
+            <span className="sr-only">{summary}</span>
+          </article>,
+        );
+        i += 1;
+      }
+      if (cards.length) {
+        nodes.push(
+          <div className="category-grid" key="category-grid">
+            {cards}
+          </div>,
+        );
+      }
+      continue;
     }
 
     if (section.title === "Bonuses and Rewards") {
-      nodes.push(renderSection(section));
+      nodes.push(
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading
+            section={section}
+            subtitle="Promotion types described in the approved content"
+          />
+          <ContentBlocks
+            blocks={section.blocks}
+            disableHrefs={disableHrefs}
+            linked={linked}
+          />
+        </section>,
+      );
       i += 1;
       const cards: ReactNode[] = [];
       while (i < sections.length && BONUS_TITLES.has(sections[i].title)) {
-        cards.push(renderSection(sections[i]));
+        cards.push(
+          <CardArticle
+            key={sections[i].id}
+            section={sections[i]}
+            className="bonus-card"
+            linked={linked}
+            disableHrefs={disableHrefs}
+          />,
+        );
         i += 1;
       }
       if (cards.length) {
@@ -282,48 +494,137 @@ export default function ArticleContent({
       continue;
     }
 
-    nodes.push(renderSection(section));
+    if (
+      section.title === "Benefits" ||
+      section.title === "Possible Limitations" ||
+      section.title === "Responsible Gaming Tips" ||
+      section.title === "Safety Tips" ||
+      section.title === "Deposit Safety Tips" ||
+      section.title === "Withdrawal Safety Tips" ||
+      section.title === "iOS Safety Tips" ||
+      section.title === "PC Security Tips" ||
+      section.title === "Security Tips"
+    ) {
+      nodes.push(
+        <section key={section.id} className="content-section" aria-labelledby={section.id}>
+          <SectionHeading section={section} />
+          <div className="info-box">
+            <ContentBlocks
+              blocks={section.blocks}
+              disableHrefs={disableHrefs}
+              linked={linked}
+            />
+          </div>
+        </section>,
+      );
+      i += 1;
+      continue;
+    }
+
+    nodes.push(
+      <section key={section.id} className="content-section" aria-labelledby={section.id}>
+        <SectionHeading section={section} />
+        <ContentBlocks
+          blocks={section.blocks}
+          disableHrefs={disableHrefs}
+          linked={linked}
+        />
+      </section>,
+    );
     i += 1;
   }
 
+  if (isHome) {
+    nodes.push(<GuideCards key="guides" />);
+  }
+
+  const cleanedIntro = content.intro.map((block) => {
+    if (block.type === "paragraph") {
+      return { ...block, text: cleanDisplayText(block.text) };
+    }
+    if (block.type === "list") {
+      return {
+        ...block,
+        items: block.items.map((item) => cleanDisplayText(item)),
+      };
+    }
+    return block;
+  });
+
+  let heroIntro = cleanedIntro;
+  let restIntro = [] as typeof cleanedIntro;
+  if (isHome) {
+    const firstParagraph = cleanedIntro.find((block) => block.type === "paragraph");
+    if (firstParagraph && firstParagraph.type === "paragraph") {
+      const sentences = firstParagraph.text.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) || [
+        firstParagraph.text,
+      ];
+      const lead = sentences.slice(0, 2).join(" ").trim();
+      const remainder = sentences.slice(2).join(" ").trim();
+      heroIntro = [{ type: "paragraph", text: lead }];
+      restIntro = [
+        ...(remainder ? [{ type: "paragraph" as const, text: remainder }] : []),
+        ...cleanedIntro.filter((block) => block !== firstParagraph),
+      ];
+    } else {
+      heroIntro = cleanedIntro.slice(0, 1);
+      restIntro = cleanedIntro.slice(1);
+    }
+  }
+
   return (
-    <article className={`article ${displayToc.length ? "has-toc" : ""}`}>
-      <div className="container">
-        <div className="article-body-col">
-          {page.banner ? (
-            <div className="page-hero">
-              <PageBanner {...page.banner} priority />
+    <article className="article">
+      <div className="article-shell">
+        <div className="page-hero">
+          <h1>{cleanDisplayText(content.h1)}</h1>
+          {isHome ? (
+            <div className="hero-intro">
+              <ContentBlocks
+                blocks={heroIntro}
+                disableHrefs={disableHrefs}
+                linked={linked}
+              />
             </div>
-          ) : null}
-
-          <h1>{content.h1}</h1>
+          ) : (
+            <ContentBlocks
+              blocks={cleanedIntro}
+              disableHrefs={disableHrefs}
+              linked={linked}
+            />
+          )}
           <PageCtas pageKey={content.key} />
-          <p className="notice">
-            bet939-game.pk is an independent informational guide and is not the
-            official Bet939 operator. Real-money gaming involves risk and no
-            winnings are guaranteed.
-          </p>
+        </div>
 
+        {page.banner ? <PageBanner {...page.banner} priority={isHome} /> : null}
+
+        {overviewRows.length ? (
+          <AppInfoTable
+            rows={overviewRows}
+            title={
+              content.key === "download"
+                ? "APK Information"
+                : content.key === "ios"
+                  ? "iOS App Information"
+                  : "App Overview"
+            }
+          />
+        ) : null}
+
+        {displayToc.length ? (
+          <div id="table-of-contents">
+            <TableOfContents items={displayToc.filter((t) => t.id !== "table-of-contents")} />
+          </div>
+        ) : null}
+
+        {isHome ? (
           <ContentBlocks
-            blocks={content.intro}
+            blocks={restIntro}
             disableHrefs={disableHrefs}
             linked={linked}
           />
-
-          {content.key !== "home" && displayToc.length ? (
-            <div className="mobile-toc-wrap">
-              <TableOfContents items={displayToc} />
-            </div>
-          ) : null}
-
-          {nodes}
-        </div>
-
-        {displayToc.length ? (
-          <div className="article-toc-col desktop-toc-wrap" id={content.key === "home" ? undefined : "table-of-contents"}>
-            <TableOfContents items={displayToc} />
-          </div>
         ) : null}
+
+        {nodes}
       </div>
     </article>
   );

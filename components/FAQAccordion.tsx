@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import type { FaqItem } from "@/lib/content";
+import { cleanDisplayText } from "@/lib/display-text";
 
 export default function FAQAccordion({ items }: { items: FaqItem[] }) {
   const baseId = useId();
@@ -15,8 +16,10 @@ export default function FAQAccordion({ items }: { items: FaqItem[] }) {
         const panelId = `${baseId}-panel-${index}`;
         const buttonId = `${baseId}-button-${index}`;
         const expanded = openIndex === index;
+        const question = cleanDisplayText(item.question);
+        const answer = cleanDisplayText(item.answer);
         return (
-          <div className="faq-item" key={item.question}>
+          <div className="faq-item" key={question}>
             <button
               type="button"
               id={buttonId}
@@ -24,7 +27,7 @@ export default function FAQAccordion({ items }: { items: FaqItem[] }) {
               aria-controls={panelId}
               onClick={() => setOpenIndex(expanded ? null : index)}
             >
-              <span>{item.question}</span>
+              <span>{question}</span>
               <span className="icon" aria-hidden="true">
                 {expanded ? "−" : "+"}
               </span>
@@ -36,7 +39,7 @@ export default function FAQAccordion({ items }: { items: FaqItem[] }) {
               className="faq-panel"
               hidden={!expanded}
             >
-              <p>{item.answer}</p>
+              <p>{answer}</p>
             </div>
           </div>
         );

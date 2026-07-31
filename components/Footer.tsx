@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FOOTER_LEGAL_ORDER,
-  FOOTER_MAIN_ORDER,
-  PAGES,
-} from "@/lib/pages";
+import { PAGES } from "@/lib/pages";
 import { LOGO_ALT, LOGO_PATH, LOGO_TITLE } from "@/lib/site";
 
 export default function Footer() {
@@ -22,7 +18,10 @@ export default function Footer() {
               width={44}
               height={44}
             />
-            <span>Bet939</span>
+            <span>
+              Bet939
+              <small>Game Pakistan</small>
+            </span>
           </Link>
           <p>
             bet939-game.pk is an independent informational guide for Bet939
@@ -31,29 +30,39 @@ export default function Footer() {
           </p>
         </div>
 
-        <div>
-          <h2 className="sr-only">Main links</h2>
-          <nav className="footer-links" aria-label="Footer main">
-            {FOOTER_MAIN_ORDER.map((key) => (
-              <Link key={key} href={PAGES[key].path}>
-                {PAGES[key].navLabel}
-              </Link>
-            ))}
+        <div className="footer-col">
+          <h4>Guides</h4>
+          <nav className="footer-links" aria-label="Footer guides">
+            <Link href={PAGES.download.path}>Download</Link>
+            <Link href={PAGES.login.path}>Login</Link>
+            <Link href={PAGES.deposit.path}>Deposit Guide</Link>
+            <Link href={PAGES.withdrawal.path}>Withdrawal Guide</Link>
+            <Link href={PAGES.ios.path}>iOS Guide</Link>
+            <Link href={PAGES.pc.path}>PC Guide</Link>
           </nav>
         </div>
 
-        <div>
-          <h2 className="sr-only">Legal links</h2>
+        <div className="footer-col">
+          <h4>Company</h4>
+          <nav className="footer-links" aria-label="Footer company">
+            <Link href={PAGES.home.path}>Home</Link>
+            <Link href={PAGES.about.path}>About Us</Link>
+            <Link href={PAGES.contact.path}>Contact Us</Link>
+          </nav>
+        </div>
+
+        <div className="footer-col">
+          <h4>Legal</h4>
           <nav className="footer-links" aria-label="Footer legal">
-            {FOOTER_LEGAL_ORDER.map((key) => (
-              <Link
-                key={key}
-                href={PAGES[key].path}
-                rel={PAGES[key].footerNofollow ? "nofollow" : undefined}
-              >
-                {PAGES[key].navLabel}
-              </Link>
-            ))}
+            <Link href={PAGES.privacy.path} rel="nofollow">
+              Privacy Policy
+            </Link>
+            <Link href={PAGES.terms.path} rel="nofollow">
+              Terms and Conditions
+            </Link>
+            <Link href={PAGES.disclaimer.path} rel="nofollow">
+              Disclaimer
+            </Link>
           </nav>
         </div>
       </div>

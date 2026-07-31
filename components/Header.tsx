@@ -4,16 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { getNavPages } from "@/lib/pages";
+import { PAGES } from "@/lib/pages";
 import { LOGO_ALT, LOGO_PATH, LOGO_TITLE } from "@/lib/site";
-import ExternalActionButton from "./ExternalActionButton";
 import ThemeToggle from "./ThemeToggle";
+
+const NAV_ITEMS = [
+  { label: "Home", path: PAGES.home.path },
+  { label: "Download", path: PAGES.download.path },
+  { label: "Login", path: PAGES.login.path },
+  { label: "Deposit", path: PAGES.deposit.path },
+  { label: "Withdrawal", path: PAGES.withdrawal.path },
+  { label: "iOS", path: PAGES.ios.path },
+  { label: "PC", path: PAGES.pc.path },
+  { label: "About", path: PAGES.about.path },
+  { label: "Contact", path: PAGES.contact.path },
+];
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelId = useId();
-  const navPages = getNavPages();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -48,17 +58,20 @@ export default function Header() {
             height={40}
             priority
           />
-          <span>Bet939</span>
+          <span>
+            Bet939
+            <small>Game Pakistan</small>
+          </span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary">
-          {navPages.map((page) => (
+          {NAV_ITEMS.map((item) => (
             <Link
-              key={page.path}
-              href={page.path}
-              aria-current={isCurrent(page.path) ? "page" : undefined}
+              key={item.path}
+              href={item.path}
+              aria-current={isCurrent(item.path) ? "page" : undefined}
             >
-              {page.navLabel}
+              {item.label}
             </Link>
           ))}
         </nav>
@@ -66,24 +79,22 @@ export default function Header() {
         <div className="header-actions">
           <ThemeToggle />
           <span className="header-cta-desktop">
-            <ExternalActionButton
-              label="Download"
-              ariaLabel="Download Bet939 externally"
-              size="sm"
-            />
-            <ExternalActionButton
-              label="Login"
-              ariaLabel="Login to Bet939 externally"
-              size="sm"
-              variant="outline"
-            />
+            <Link
+              href={PAGES.download.path}
+              className="btn btn-gold btn-sm"
+              aria-label="Read Bet939 download guide"
+            >
+              Download
+            </Link>
           </span>
           <span className="header-cta-mobile">
-            <ExternalActionButton
-              label="Download"
-              ariaLabel="Download Bet939 externally"
-              size="sm"
-            />
+            <Link
+              href={PAGES.download.path}
+              className="btn btn-gold btn-sm"
+              aria-label="Read Bet939 download guide"
+            >
+              Download
+            </Link>
           </span>
           <button
             type="button"
@@ -93,7 +104,9 @@ export default function Header() {
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
-            ☰
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </div>
@@ -119,31 +132,38 @@ export default function Header() {
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
               >
-                ✕
+                <span />
+                <span />
+                <span />
               </button>
             </div>
             <nav aria-label="Mobile primary">
-              {navPages.map((page) => (
+              {NAV_ITEMS.map((item) => (
                 <Link
-                  key={page.path}
-                  href={page.path}
-                  aria-current={isCurrent(page.path) ? "page" : undefined}
+                  key={item.path}
+                  href={item.path}
+                  aria-current={isCurrent(item.path) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                 >
-                  {page.navLabel}
+                  {item.label}
                 </Link>
               ))}
             </nav>
             <div className="cta-row">
-              <ExternalActionButton
-                label="Download Now"
-                ariaLabel="Download Bet939 externally"
-              />
-              <ExternalActionButton
-                label="Login Now"
-                ariaLabel="Login to Bet939 externally"
-                variant="outline"
-              />
+              <Link
+                href={PAGES.download.path}
+                className="btn btn-gold"
+                onClick={() => setOpen(false)}
+              >
+                Download Guide
+              </Link>
+              <Link
+                href={PAGES.login.path}
+                className="btn btn-outline"
+                onClick={() => setOpen(false)}
+              >
+                Login Guide
+              </Link>
             </div>
           </div>
         </div>

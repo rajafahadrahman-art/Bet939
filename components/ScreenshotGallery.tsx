@@ -10,15 +10,46 @@ export interface ScreenshotItem {
   height: number;
 }
 
+function slidesPerView() {
+  if (typeof window === "undefined") return 1;
+  if (window.innerWidth >= 1024) return 3;
+  if (window.innerWidth >= 700) return 2;
+  return 1;
+}
+
 export default function ScreenshotGallery({
   items,
 }: {
   items: ScreenshotItem[];
 }) {
+  const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
+  const [index, setIndex] = useState(0);
+  const [perView, setPerView] = useState(1);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
   const titleId = useId();
+
+  useEffect(() => {
+    const sync = () => setPerView(slidesPerView());
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const slide = track.querySelector<HTMLElement>(".slider-slide");
+      if (!slide) return;
+      const width = slide.offsetWidth + 16;
+      const next = Math.round(track.scrollLeft / width);
+      setIndex(Math.max(0, Math.min(items.length - 1, next)));
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, [items.length]);
 
   useEffect(() => {
     if (active === null) return;
@@ -64,28 +95,87 @@ export default function ScreenshotGallery({
     };
   }, [active, items.length]);
 
+  const scrollTo = (target: number) => {
+    const track = trackRef.current;
+    const slide = track?.querySelector<HTMLElement>(".slider-slide");
+    if (!track || !slide) return;
+    const width = slide.offsetWidth + 16;
+    const maxIndex = Math.max(0, items.length - perView);
+    const next = Math.max(0, Math.min(maxIndex, target));
+    track.scrollTo({ left: next * width, behavior: "smooth" });
+    setIndex(next);
+  };
+
   return (
-    <section className="screenshot-section" aria-labelledby="screenshots-heading">
-      <h2 id="screenshots-heading">Bet939 App Screenshots</h2>
-      <div className="screenshot-grid">
-        {items.map((item, index) => (
+    <section className="screenshot-section content-section" aria-labelledby="screenshots-heading">
+      <div className="section-header">
+        <h2 id="screenshots-heading">Bet939 App Screenshots</h2>
+        <p className="section-subtitle">
+          Real app screens from the uploaded Bet939 gallery
+        </p>
+      </div>
+
+      <div className="slider-shell">
+        <div
+          className="slider-track"
+          ref={trackRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Bet939 app screenshots"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") scrollTo(index + 1);
+            if (e.key === "ArrowLeft") scrollTo(index - 1);
+          }}
+        >
+          {items.map((item, itemIndex) => (
+            <div className="slider-slide" key={item.src}>
+              <button
+                type="button"
+                className="shot-btn"
+                onClick={() => setActive(itemIndex)}
+                aria-label={`Open screenshot: ${item.alt}`}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                  sizes="(max-width: 700px) 80vw, (max-width: 1024px) 40vw, 280px"
+                  loading="lazy"
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="slider-controls">
           <button
-            key={item.src}
             type="button"
-            className="shot shot-btn"
-            onClick={() => setActive(index)}
-            aria-label={`Open screenshot: ${item.alt}`}
+            aria-label="Previous screenshots"
+            onClick={() => scrollTo(index - 1)}
           >
-            <Image
-              src={item.src}
-              alt={item.alt}
-              width={item.width}
-              height={item.height}
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 220px"
-              loading="lazy"
-            />
+            ‹
           </button>
-        ))}
+          <div className="slider-dots" role="tablist" aria-label="Screenshot pages">
+            {items.map((item, dotIndex) => (
+              <button
+                key={item.src}
+                type="button"
+                aria-label={`Go to screenshot ${dotIndex + 1}`}
+                aria-current={index === dotIndex ? "true" : undefined}
+                onClick={() => scrollTo(dotIndex)}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label="Next screenshots"
+            onClick={() => scrollTo(index + 1)}
+          >
+            ›
+          </button>
+        </div>
       </div>
 
       {active !== null ? (

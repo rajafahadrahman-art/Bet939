@@ -3,7 +3,6 @@ import BackToTop from "@/components/BackToTop";
 import Chatbot from "@/components/Chatbot";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import MobileStickyCTA from "@/components/MobileStickyCTA";
 import ThemeScript from "@/components/ThemeScript";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F7FAF6",
+  themeColor: "#F8FAF9",
   width: "device-width",
   initialScale: 1,
 };
@@ -48,7 +47,6 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <MobileStickyCTA />
         <Chatbot />
         <BackToTop />
       </body>
