@@ -36,10 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-PK" data-theme="light" suppressHydrationWarning>
-      <head>
-        <ThemeScript />
-      </head>
       <body>
+        <ThemeScript />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
