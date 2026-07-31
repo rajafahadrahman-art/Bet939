@@ -231,7 +231,8 @@ function collectBlocks(
     }
 
     const explicitList = /^[-*•]\s+/.test(line) || /^\d+\.\s+/.test(line);
-    const continueList = listBuffer.length > 0 && isLikelyListItem(line) && line.length < 100;
+    const shortStep = line.length <= 110 && !line.includes(". ");
+    const continueList = listBuffer.length > 0 && shortStep;
     const startListHint =
       options.forceList ||
       /:$/.test(buffer[buffer.length - 1] || "") ||
@@ -239,12 +240,15 @@ function collectBlocks(
         buffer.join(" "),
       );
 
-    if (explicitList || (listBuffer.length && continueList) || (startListHint && isLikelyListItem(line) && line.length < 90 && !line.endsWith("."))) {
-      if (explicitList || listBuffer.length || (isLikelyListItem(line) && !/[.!?]$/.test(line))) {
-        flushParagraph();
-        listBuffer.push(line);
-        continue;
-      }
+    if (
+      explicitList ||
+      (options.forceList && shortStep) ||
+      (listBuffer.length && continueList) ||
+      (startListHint && isLikelyListItem(line) && line.length < 90)
+    ) {
+      flushParagraph();
+      listBuffer.push(line);
+      continue;
     }
 
     if (listBuffer.length) flushList();
@@ -335,11 +339,12 @@ export function parseContent(key: ContentPageKey): ParsedContent {
         reviews,
       });
     } else {
+      const forceList = shouldForceList(current.title);
       sections.push({
         id,
         title: current.title,
         level: current.level,
-        blocks: collectBlocks(current.lines, { isAppInfo }),
+        blocks: collectBlocks(current.lines, { isAppInfo, forceList }),
         isAppInfo,
       });
     }
@@ -419,6 +424,52 @@ export function parseContent(key: ContentPageKey): ParsedContent {
     reviews,
     rawBody: content,
   };
+}
+
+const FORCE_LIST_TITLES = new Set([
+  "Bet939 Game Download Requirements",
+  "How to Download Bet939 Game APK",
+  "How to Install APK",
+  "How to Enable Unknown App Installation",
+  "How to Update Apk to the Latest Version",
+  "APK Permissions",
+  "Safety Tips",
+  "How to Create an Account",
+  "Bet939 Game Login Steps",
+  "Password Forgotten",
+  "OTP Not Received",
+  "Security Tips",
+  "What You Need Before Making a Deposit",
+  "How to Deposit Money",
+  "Deposit Safety Tips",
+  "What You Need Before Withdrawal",
+  "How to Withdraw Money from Bet939",
+  "Withdrawal Safety Tips",
+  "Requirements for iOS",
+  "How to Download Bet939 for iOS",
+  "How to Trust the Developer Profile",
+  "How to Update App on iPhone",
+  "iOS Safety Tips",
+  "Method 1: Online Access on Browser",
+  "How to Install Through an Emulator",
+  "PC Security Tips",
+  "Registration",
+  "Login Process",
+  "Benefits",
+  "Possible Limitations",
+  "Responsible Gaming Tips",
+  "APK Not Installing",
+  "“App Not Installed” Error",
+  '"App Not Installed" Error',
+  "Bet939 Download Is Slow",
+  "App Icon Is Not Appearing",
+  "App Is Not Installing",
+  "Unable to Verify App Error",
+  "App Opens and Closes Immediately",
+]);
+
+function shouldForceList(title: string): boolean {
+  return FORCE_LIST_TITLES.has(title);
 }
 
 function usefulH3(title: string, key: ContentPageKey): boolean {
