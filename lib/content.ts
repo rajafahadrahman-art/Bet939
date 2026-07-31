@@ -295,7 +295,7 @@ export function parseContent(key: ContentPageKey): ParsedContent {
   const headings = headingMap(key);
   const usedSlugs = new Set<string>();
   const sections: ContentSection[] = [];
-  let introLines: string[] = [];
+  const introLines: string[] = [];
   let current: { title: string; level: 2 | 3; lines: string[] } | null = null;
 
   const pushCurrent = () => {

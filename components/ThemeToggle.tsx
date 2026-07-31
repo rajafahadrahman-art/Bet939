@@ -1,21 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
-function getTheme(): Theme {
-  if (typeof document === "undefined") return "light";
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener("bet939-theme-change", onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener("bet939-theme-change", onStoreChange);
+  };
+}
+
+function getSnapshot(): Theme {
   const attr = document.documentElement.getAttribute("data-theme");
   return attr === "dark" ? "dark" : "light";
 }
 
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+function getServerSnapshot(): Theme {
+  return "light";
+}
 
-  useEffect(() => {
-    setTheme(getTheme());
-  }, []);
+export default function ThemeToggle() {
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = () => {
     const next: Theme = theme === "light" ? "dark" : "light";
@@ -25,7 +33,7 @@ export default function ThemeToggle() {
     } catch {
       /* ignore */
     }
-    setTheme(next);
+    window.dispatchEvent(new Event("bet939-theme-change"));
   };
 
   return (
