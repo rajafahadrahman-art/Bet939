@@ -43,7 +43,7 @@ Identity verification
 Bank processing may take longer than mobile-wallet payments.
 How to Withdraw Money from Bet939
 Follow these general steps:
-Open the Bet939 Game.
+open bet939
 Log in with your registered number and password.
 Open the Wallet or Withdrawal section.
 Choose an available payment method.

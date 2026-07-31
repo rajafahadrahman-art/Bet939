@@ -244,12 +244,14 @@ function CardArticle({
   className,
   linked,
   disableHrefs,
+  pageKey,
 }: {
   section: ContentSection;
   icon?: string;
   className: string;
   linked: Set<string>;
   disableHrefs: Set<string>;
+  pageKey: ParsedContent["key"];
 }) {
   return (
     <article className={className} key={section.id}>
@@ -263,6 +265,7 @@ function CardArticle({
         blocks={section.blocks}
         disableHrefs={disableHrefs}
         linked={linked}
+        pageKey={pageKey}
       />
     </article>
   );
@@ -361,6 +364,8 @@ export default function ArticleContent({
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
+          
+            pageKey={content.key}
           />
           <ReviewCards reviews={section.reviews || content.reviews} />
         </section>,
@@ -369,17 +374,18 @@ export default function ArticleContent({
       continue;
     }
 
-    if (section.title === "Main Features of Game") {
+    if (
+      section.title === "Main Features of Bet939 Game" ||
+      section.title === "Main Features of Game"
+    ) {
       nodes.push(
         <section key={section.id} className="content-section" aria-labelledby={section.id}>
-          <SectionHeading
-            section={section}
-            subtitle="Key platform features described in the approved guide"
-          />
+          <SectionHeading section={section} />
           <ContentBlocks
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
+            pageKey={content.key}
           />
         </section>,
       );
@@ -394,6 +400,7 @@ export default function ArticleContent({
             className="feature-card"
             linked={linked}
             disableHrefs={disableHrefs}
+            pageKey={content.key}
           />,
         );
         i += 1;
@@ -411,14 +418,12 @@ export default function ArticleContent({
     if (section.title === "Available Games") {
       nodes.push(
         <section key={section.id} className="content-section" aria-labelledby={section.id}>
-          <SectionHeading
-            section={section}
-            subtitle="Concise category overview from the approved homepage content"
-          />
+          <SectionHeading section={section} />
           <ContentBlocks
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
+            pageKey={content.key}
           />
         </section>,
       );
@@ -440,6 +445,7 @@ export default function ArticleContent({
               blocks={gameSection.blocks}
               disableHrefs={disableHrefs}
               linked={linked}
+              pageKey={content.key}
             />
             <span className="sr-only">{summary}</span>
           </article>,
@@ -467,6 +473,8 @@ export default function ArticleContent({
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
+          
+            pageKey={content.key}
           />
         </section>,
       );
@@ -480,6 +488,7 @@ export default function ArticleContent({
             className="bonus-card"
             linked={linked}
             disableHrefs={disableHrefs}
+            pageKey={content.key}
           />,
         );
         i += 1;
@@ -513,6 +522,7 @@ export default function ArticleContent({
               blocks={section.blocks}
               disableHrefs={disableHrefs}
               linked={linked}
+              pageKey={content.key}
             />
           </div>
         </section>,
@@ -528,6 +538,7 @@ export default function ArticleContent({
           blocks={section.blocks}
           disableHrefs={disableHrefs}
           linked={linked}
+          pageKey={content.key}
         />
       </section>,
     );
@@ -583,6 +594,7 @@ export default function ArticleContent({
                 blocks={heroIntro}
                 disableHrefs={disableHrefs}
                 linked={linked}
+                pageKey={content.key}
               />
             </div>
           ) : (
@@ -590,6 +602,7 @@ export default function ArticleContent({
               blocks={cleanedIntro}
               disableHrefs={disableHrefs}
               linked={linked}
+              pageKey={content.key}
             />
           )}
           <PageCtas pageKey={content.key} />
@@ -621,6 +634,7 @@ export default function ArticleContent({
             blocks={restIntro}
             disableHrefs={disableHrefs}
             linked={linked}
+            pageKey={content.key}
           />
         ) : null}
 

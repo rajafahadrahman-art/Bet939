@@ -1,16 +1,19 @@
 import type { Block } from "@/lib/content";
 import { cleanDisplayText } from "@/lib/display-text";
 import { linkifyText } from "@/lib/internal-links";
+import type { ContentPageKey } from "@/lib/pages";
 import AppInfoTable from "./AppInfoTable";
 
 export default function ContentBlocks({
   blocks,
   disableHrefs,
   linked,
+  pageKey,
 }: {
   blocks: Block[];
   disableHrefs?: Set<string>;
   linked?: Set<string>;
+  pageKey?: ContentPageKey;
 }) {
   return (
     <>
@@ -21,6 +24,7 @@ export default function ContentBlocks({
               {linkifyText(cleanDisplayText(block.text), {
                 disableHrefs,
                 alreadyLinked: linked,
+                pageKey,
               })}
             </p>
           );
@@ -33,6 +37,7 @@ export default function ContentBlocks({
                   {linkifyText(cleanDisplayText(item), {
                     disableHrefs,
                     alreadyLinked: linked,
+                    pageKey,
                   })}
                 </li>
               ))}
@@ -48,6 +53,7 @@ export default function ContentBlocks({
               {linkifyText(cleanDisplayText(block.text), {
                 disableHrefs,
                 alreadyLinked: linked,
+                pageKey,
               })}
             </blockquote>
           );

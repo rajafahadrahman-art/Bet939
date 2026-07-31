@@ -1,11 +1,9 @@
 export default function AppInfoTable({
   rows,
   title = "App Overview",
-  subtitle = "At-a-glance details from the approved Bet939 guide",
 }: {
   rows: [string, string][];
   title?: string;
-  subtitle?: string;
 }) {
   if (!rows.length) return null;
 
@@ -16,7 +14,6 @@ export default function AppInfoTable({
     <div className="overview-card">
       <div className="overview-card-header">
         <h2>{title}</h2>
-        {subtitle ? <p>{subtitle}</p> : null}
       </div>
       <div className="table-wrap">
         <table className="app-info-table">
