@@ -5,7 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { PAGES } from "@/lib/pages";
-import { LOGO_ALT, LOGO_PATH, LOGO_TITLE } from "@/lib/site";
+import {
+  EXTERNAL_ACTION_URL,
+  EXTERNAL_LINK_REL,
+  LOGO_ALT,
+  LOGO_PATH,
+  LOGO_TITLE,
+} from "@/lib/site";
 import ThemeToggle from "./ThemeToggle";
 
 const NAV_ITEMS = [
@@ -79,22 +85,26 @@ export default function Header() {
         <div className="header-actions">
           <ThemeToggle />
           <span className="header-cta-desktop">
-            <Link
-              href={PAGES.download.path}
+            <a
+              href={EXTERNAL_ACTION_URL}
+              target="_blank"
+              rel={EXTERNAL_LINK_REL}
               className="btn btn-gold btn-sm"
-              aria-label="Read Bet939 download guide"
+              aria-label="Download Bet939 Game"
             >
               Download
-            </Link>
+            </a>
           </span>
           <span className="header-cta-mobile">
-            <Link
-              href={PAGES.download.path}
+            <a
+              href={EXTERNAL_ACTION_URL}
+              target="_blank"
+              rel={EXTERNAL_LINK_REL}
               className="btn btn-gold btn-sm"
-              aria-label="Read Bet939 download guide"
+              aria-label="Download Bet939 Game"
             >
               Download
-            </Link>
+            </a>
           </span>
           <button
             type="button"

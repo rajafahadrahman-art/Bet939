@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import BackToTop from "@/components/BackToTop";
-import Chatbot from "@/components/Chatbot";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeScript from "@/components/ThemeScript";
@@ -47,7 +46,6 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <Chatbot />
         <BackToTop />
       </body>
     </html>

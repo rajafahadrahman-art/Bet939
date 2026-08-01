@@ -8,6 +8,5 @@ export const LOGO_ALT = "Bet939 game";
 export const LOGO_TITLE = "bet 939 game";
 export const HOMEPAGE_BANNER = "/images/bet939-homepage-banner.webp";
 export const DOWNLOAD_BANNER = "/images/bet939-download-banner.webp";
-export const CHATBOT_NAME = "bet939-game.pk website guide assistant";
 
 export const OG_DEFAULT_IMAGE = HOMEPAGE_BANNER;
