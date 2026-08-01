@@ -92,7 +92,7 @@ Eligible payment methods
 Turnover requirement
 Withdrawal conditions
 A bonus is not always available for immediate withdrawal. It may need to be used according to the promotion rules first.
-The homepage explains the general types of bonuses available in the Bet939 Game App.
+The homepage explains the general types of bonuses available in the Bet939 Game.
 Deposit Safety Tips
 Use only payment details shown inside your account.
 Confirm the receiver’s name before sending money.

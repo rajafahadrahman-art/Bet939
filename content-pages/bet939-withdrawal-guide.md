@@ -138,6 +138,9 @@ Use only official support channels.
 Keep your account password private.
 Do not believe in guaranteed withdrawal claims.
 Report suspicious messages or calls.
+Conclusion
+Withdrawing money is generally simple when the account is verified and the payment details are correct. Users should choose an available payment method, enter the correct information, complete any required verification, and keep the request ID.
+If a withdrawal remains pending, avoid submitting the same request again. Check the status, bonus conditions, and account details before contacting support. Users who still need to add money can read the Bet939 deposit guide.
 Frequently Asked Questions
 How can I withdraw money from Bet939?
 Open the wallet or withdrawal section, select an available method, enter the amount and correct account details, complete verification, and submit the request.
@@ -159,6 +162,4 @@ Can support ask for my JazzCash PIN?
 No. Never share your JazzCash PIN, Easypaisa PIN, banking password, or OTP.
 Can I use another person’s payment account?
 It is better to use an account in your own name because third-party details may cause verification issues.
-Conclusion
-Withdrawing money is generally simple when the account is verified and the payment details are correct. Users should choose an available payment method, enter the correct information, complete any required verification, and keep the request ID.
-If a withdrawal remains pending, avoid submitting the same request again. Check the status, bonus conditions, and account details before contacting support. Users who still need to add money can read the Bet939 deposit guide. 
+

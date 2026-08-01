@@ -21,24 +21,34 @@ const DOMAIN_RULE: AnchorRule = {
 const PAGE_RULES: Record<ContentPageKey, AnchorRule[]> = {
   home: [
     {
-      pattern: /bet939 game download page/i,
+      pattern: /bet939 game download(?=\s+page\b)/i,
       href: PAGES.download.path,
-      anchor: "bet939 game download page",
+      anchor: "bet939 game download",
     },
     {
-      pattern: /bet939 for ios guide/i,
+      pattern: /bet939 for ios(?=\s+guide\b)/i,
       href: PAGES.ios.path,
-      anchor: "bet939 for ios guide",
+      anchor: "bet939 for iOS",
     },
     {
-      pattern: /bet939 for pc guide/i,
+      pattern: /bet939 for pc(?=\s+guide\b)/i,
       href: PAGES.pc.path,
-      anchor: "bet939 for pc guide",
+      anchor: "bet939 for PC",
     },
     {
-      pattern: /complete bet939 game login(?=\s+guide\b)/i,
+      pattern: /bet939 game login(?=\s+guide\b)/i,
       href: PAGES.login.path,
-      anchor: "complete bet939 game login",
+      anchor: "bet939 game login",
+    },
+    {
+      pattern: /deposit guide/i,
+      href: PAGES.deposit.path,
+      anchor: "deposit guide",
+    },
+    {
+      pattern: /withdrawal guide/i,
+      href: PAGES.withdrawal.path,
+      anchor: "withdrawal guide",
     },
   ],
   download: [
@@ -75,16 +85,25 @@ const PAGE_RULES: Record<ContentPageKey, AnchorRule[]> = {
       anchor: "Bet939",
     },
     {
-      // Render "bet939 game" + keep " homepage" outside the link.
       pattern: /Bet939(?=\s+homepage\b)/i,
       href: PAGES.home.path,
       anchor: "bet939 game",
       once: false,
     },
     {
-      pattern: /(?:complete\s+)?Bet939 Game Download(?=\s+guide\b)|(?:complete\s+)?Bet939 Game Download/i,
+      pattern: /Bet939 Game Download(?=\s+guide\b)|Bet939 Game Download/i,
       href: PAGES.download.path,
       anchor: "bet939 game download",
+    },
+    {
+      pattern: /iOS guide/i,
+      href: PAGES.ios.path,
+      anchor: "iOS guide",
+    },
+    {
+      pattern: /PC guide/i,
+      href: PAGES.pc.path,
+      anchor: "PC guide",
     },
   ],
   deposit: [
@@ -97,6 +116,16 @@ const PAGE_RULES: Record<ContentPageKey, AnchorRule[]> = {
       pattern: /Bet939 Game Login(?=\s+guide\b)|Bet939 Game Login/i,
       href: PAGES.login.path,
       anchor: "bet939 game login",
+    },
+    {
+      pattern: /Bet939 withdrawal(?=\s+guide\b)/,
+      href: PAGES.withdrawal.path,
+      anchor: "Bet939 withdrawal",
+    },
+    {
+      pattern: /Bet939 Game(?!\s+(Download|Login)\b)/,
+      href: PAGES.home.path,
+      anchor: "Bet939 Game",
     },
     {
       pattern: /\bBet939\b|\bbet939\b/,
@@ -116,6 +145,11 @@ const PAGE_RULES: Record<ContentPageKey, AnchorRule[]> = {
       anchor: "Bet939 Game download",
     },
     {
+      pattern: /Bet939 deposit(?=\s+guide\b)/i,
+      href: PAGES.deposit.path,
+      anchor: "Bet939 deposit",
+    },
+    {
       pattern: /Bet939 Game(?=\s+account\b)/,
       href: PAGES.home.path,
       anchor: "Bet939 Game",
@@ -129,12 +163,52 @@ const PAGE_RULES: Record<ContentPageKey, AnchorRule[]> = {
   ],
   ios: [
     {
+      pattern: /Bet939 Game Login(?=\s+guide\b)/,
+      href: PAGES.login.path,
+      anchor: "Bet939 Game Login",
+    },
+    {
+      pattern: /Bet939 Download(?=\s+guide\b)/,
+      href: PAGES.download.path,
+      anchor: "Bet939 Download",
+    },
+    {
+      pattern: /Bet939 for PC(?=\s+guide\b)/,
+      href: PAGES.pc.path,
+      anchor: "Bet939 for PC",
+    },
+    {
+      pattern: /deposit guide/i,
+      href: PAGES.deposit.path,
+      anchor: "deposit guide",
+    },
+    {
+      pattern: /withdrawal guide/i,
+      href: PAGES.withdrawal.path,
+      anchor: "withdrawal guide",
+    },
+    {
       pattern: /\bBet939\b/,
       href: PAGES.home.path,
       anchor: "Bet939",
     },
   ],
   pc: [
+    {
+      pattern: /Bet939 Game Login(?=\s+guide\b)/,
+      href: PAGES.login.path,
+      anchor: "Bet939 Game Login",
+    },
+    {
+      pattern: /Bet939 Download(?=\s+guide\b)/,
+      href: PAGES.download.path,
+      anchor: "Bet939 Download",
+    },
+    {
+      pattern: /Bet939 for iOS(?=\s+guide\b)/,
+      href: PAGES.ios.path,
+      anchor: "Bet939 for iOS",
+    },
     {
       pattern: /\bBet939 Game\b/,
       href: PAGES.home.path,

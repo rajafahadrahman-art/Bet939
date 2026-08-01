@@ -110,9 +110,6 @@ export default function ScreenshotGallery({
     <section className="screenshot-section content-section" aria-labelledby="screenshots-heading">
       <div className="section-header">
         <h2 id="screenshots-heading">Bet939 App Screenshots</h2>
-        <p className="section-subtitle">
-          Real app screens from the uploaded Bet939 gallery
-        </p>
       </div>
 
       <div className="slider-shell">

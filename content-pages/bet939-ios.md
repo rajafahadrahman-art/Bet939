@@ -149,7 +149,7 @@ Users can read the general deposit guide and withdrawal guide for complete payme
 Conclusion
 Game app can be downloaded on supported iPhones and iPads through Safari. Users need to open the verified iOS installation link, approve the request and wait for the app icon to appear on the home screen.
 If an untrusted developer message appears, open the iPhone settings and approve the relevant profile under VPN & Device Management. Do not install Android APK files or profiles shared by unknown people.
-After installation, users can register a new account or follow the Bet939 Game Login guide to access an existing account. Android users should use the separate download page, while computer users can read the Bet939 for PC guide.
+Follow the Bet939 Game Login guide to access an existing account. Computer users can read the Bet939 for PC guide.
 Frequently Asked Questions
 Can I download Bet939 on an iPhone?
 Yes. The app can be downloaded on supported iPhones through the direct Safari installation method.

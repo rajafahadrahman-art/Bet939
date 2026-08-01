@@ -51,7 +51,7 @@ Use antivirus protection
 Log out after using a shared system
 Do not share OTP codes
 Keep Windows and the browser updated
-Existing users can follow the Bet939 Login guide to access their account. Android users can visit the Bet939 Download guide, while iPhone users can follow the separate Bet939 for iOS guide.
+Existing users can follow the Bet939 Game Login guide to access their account. Android users can visit the Bet939 Download guide, while iPhone users can follow the separate Bet939 for iOS guide.
 Conclusion
 Bet939 Game can be used on a Windows PC or laptop through a supported browser or an Android emulator. The browser method is quicker and easier, while the emulator method allows users to install the Android APK on a computer.
 Frequently Asked Questions

@@ -342,10 +342,7 @@ export default function ArticleContent({
     if (section.title === "Frequently Asked Questions") {
       nodes.push(
         <section key={section.id} className="content-section" aria-labelledby={section.id}>
-          <SectionHeading
-            section={section}
-            subtitle="Common questions answered with the same approved wording"
-          />
+          <SectionHeading section={section} />
           <FAQAccordion items={section.faqs || content.faqs} />
         </section>,
       );
@@ -356,15 +353,11 @@ export default function ArticleContent({
     if (section.title === "User Reviews") {
       nodes.push(
         <section key={section.id} className="content-section" aria-labelledby={section.id}>
-          <SectionHeading
-            section={section}
-            subtitle="Reviews shared in the approved homepage content"
-          />
+          <SectionHeading section={section} />
           <ContentBlocks
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
-          
             pageKey={content.key}
           />
           <ReviewCards reviews={section.reviews || content.reviews} />
@@ -465,15 +458,11 @@ export default function ArticleContent({
     if (section.title === "Bonuses and Rewards") {
       nodes.push(
         <section key={section.id} className="content-section" aria-labelledby={section.id}>
-          <SectionHeading
-            section={section}
-            subtitle="Promotion types described in the approved content"
-          />
+          <SectionHeading section={section} />
           <ContentBlocks
             blocks={section.blocks}
             disableHrefs={disableHrefs}
             linked={linked}
-          
             pageKey={content.key}
           />
         </section>,
