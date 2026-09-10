@@ -64,7 +64,7 @@ Simple Mobile Dashboard
 Platform uses mobile focused dashboard where important sections are placed together. Users can find games, promotions, account details and wallet options from the main menu.
 A clear dashboard is useful for new players because they do not need to search through many sections. Main functions are easy to locate.
 Multiple Game Categories
-Bet 939 provides access to more than one type of game. Users can find categories of their choice like Hot games, Slots, Mini Games, Fishing, Live Games, Card Games and Sports options in the same application.
+Bet 939 provides access to more than one type of game. Users can find categories of their choice in the same app.
 This variety allows users to explore different formats. Before playing, users should open the rules section and understand how the result, entry amount and payout are calculated.
 Account and Wallet System
 The account area allows users to check personal details, transaction records and wallet balance. This section shows reward history, payment status and account verification options.
