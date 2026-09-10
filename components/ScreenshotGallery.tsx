@@ -138,7 +138,7 @@ export default function ScreenshotGallery({
                   alt={item.alt}
                   width={item.width}
                   height={item.height}
-                  sizes="(max-width: 700px) 80vw, (max-width: 1024px) 40vw, 280px"
+                  sizes="(max-width: 700px) 70vw, 220px"
                   loading="lazy"
                 />
               </button>

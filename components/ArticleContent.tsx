@@ -45,28 +45,28 @@ const SCREENSHOTS = [
   },
 ];
 
-const FEATURE_ICONS: Record<string, string> = {
-  "Simple Mobile Dashboard": "📱",
-  "Multiple Game Categories": "🎮",
-  "Account and Wallet System": "💳",
-  "Live Gaming Options": "📹",
-  "Mobile-Friendly Performance": "⚡",
-  "Transaction History": "🧾",
-  "Login Security": "🔒",
-  "Promotion Section": "🎁",
-  "Customer Support Access": "💬",
-  "Regular Updates": "🔄",
-};
+const FEATURE_TITLES = new Set([
+  "Simple Mobile Dashboard",
+  "Multiple Game Categories",
+  "Account and Wallet System",
+  "Live Gaming Options",
+  "Mobile-Friendly Performance",
+  "Transaction History",
+  "Login Security",
+  "Promotion Section",
+  "Customer Support Access",
+  "Regular Updates",
+]);
 
-const GAME_ICONS: Record<string, string> = {
-  "Hot Games": "🔥",
-  Slots: "🎰",
-  "Mini Games": "🎯",
-  "Fishing Games": "🎣",
-  "Live Games": "📹",
-  "Card Games": "🃏",
-  Sports: "🏆",
-};
+const GAME_TITLES = new Set([
+  "Hot Games",
+  "Slots",
+  "Mini Games",
+  "Fishing Games",
+  "Live Games",
+  "Card Games",
+  "Sports",
+]);
 
 const BONUS_TITLES = new Set([
   "New-User Reward",
@@ -78,9 +78,6 @@ const BONUS_TITLES = new Set([
   "VIP and Activity Rewards",
   "Event Promotions",
 ]);
-
-const FEATURE_TITLES = new Set(Object.keys(FEATURE_ICONS));
-const GAME_TITLES = new Set(Object.keys(GAME_ICONS));
 
 function SectionHeading({
   section,
@@ -240,14 +237,12 @@ function blocksToPlain(blocks: Block[]): string {
 
 function CardArticle({
   section,
-  icon,
   className,
   linked,
   disableHrefs,
   pageKey,
 }: {
   section: ContentSection;
-  icon?: string;
   className: string;
   linked: Set<string>;
   disableHrefs: Set<string>;
@@ -255,11 +250,6 @@ function CardArticle({
 }) {
   return (
     <article className={className} key={section.id}>
-      {icon ? (
-        <div className="card-icon" aria-hidden="true">
-          {icon}
-        </div>
-      ) : null}
       <h3 id={section.id}>{section.title}</h3>
       <ContentBlocks
         blocks={section.blocks}
@@ -335,7 +325,11 @@ export default function ArticleContent({
   while (i < sections.length) {
     const section = sections[i];
 
-    if (isHome && section.title === "Available Games") {
+    if (
+      isHome &&
+      (section.title === "Main Features of Bet939 Game" ||
+        section.title === "Main Features of Game")
+    ) {
       nodes.push(<ScreenshotGallery key="screenshots" items={SCREENSHOTS} />);
     }
 
@@ -389,7 +383,6 @@ export default function ArticleContent({
           <CardArticle
             key={sections[i].id}
             section={sections[i]}
-            icon={FEATURE_ICONS[sections[i].title]}
             className="feature-card"
             linked={linked}
             disableHrefs={disableHrefs}
@@ -430,9 +423,6 @@ export default function ArticleContent({
         );
         cards.push(
           <article className="category-card" key={gameSection.id}>
-            <div className="card-icon" aria-hidden="true">
-              {GAME_ICONS[gameSection.title]}
-            </div>
             <h3 id={gameSection.id}>{gameSection.title}</h3>
             <ContentBlocks
               blocks={gameSection.blocks}
@@ -559,9 +549,13 @@ export default function ArticleContent({
       const sentences = firstParagraph.text.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) || [
         firstParagraph.text,
       ];
-      const lead = sentences.slice(0, 2).join(" ").trim();
-      const remainder = sentences.slice(2).join(" ").trim();
-      heroIntro = [{ type: "paragraph", text: lead }];
+      const firstPara = sentences.slice(0, 2).join(" ").trim();
+      const secondPara = sentences.slice(2, 4).join(" ").trim();
+      const remainder = sentences.slice(4).join(" ").trim();
+      heroIntro = [
+        ...(firstPara ? [{ type: "paragraph" as const, text: firstPara }] : []),
+        ...(secondPara ? [{ type: "paragraph" as const, text: secondPara }] : []),
+      ];
       restIntro = [
         ...(remainder ? [{ type: "paragraph" as const, text: remainder }] : []),
         ...cleanedIntro.filter((block) => block !== firstParagraph),
@@ -576,7 +570,11 @@ export default function ArticleContent({
     <article className="article">
       <div className="article-shell">
         <div className="page-hero">
-          <h1>{cleanDisplayText(content.h1)}</h1>
+          <h1>
+            {isHome
+              ? "Download Bet939 Game App - Best Platform in Pakistan 2026"
+              : cleanDisplayText(content.h1)}
+          </h1>
           {isHome ? (
             <div className="hero-intro">
               <ContentBlocks
@@ -612,7 +610,7 @@ export default function ArticleContent({
           />
         ) : null}
 
-        {displayToc.length ? (
+        {isHome && displayToc.length ? (
           <div id="table-of-contents">
             <TableOfContents items={displayToc.filter((t) => t.id !== "table-of-contents")} />
           </div>

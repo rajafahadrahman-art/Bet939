@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col">
-          <h4>Guides</h4>
+          <h3>Guides</h3>
           <nav className="footer-links" aria-label="Footer guides">
             <Link href={PAGES.download.path}>Download</Link>
             <Link href={PAGES.login.path}>Login</Link>
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col">
-          <h4>Company</h4>
+          <h3>Company</h3>
           <nav className="footer-links" aria-label="Footer company">
             <Link href={PAGES.home.path}>Home</Link>
             <Link href={PAGES.about.path}>About Us</Link>
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col">
-          <h4>Legal</h4>
+          <h3>Legal</h3>
           <nav className="footer-links" aria-label="Footer legal">
             <Link href={PAGES.privacy.path} rel="nofollow">
               Privacy Policy
