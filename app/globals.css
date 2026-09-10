@@ -176,11 +176,15 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  font-size: clamp(1.85rem, 5.4vw, 2.85rem);
   margin: 0 0 1rem;
   letter-spacing: -0.02em;
   color: var(--green-dark);
   font-weight: 700;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 html[data-theme="dark"] h1 {
@@ -250,7 +254,7 @@ p {
 .btn-gold,
 .btn-primary {
   background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-  color: var(--green-dark);
+  color: #fff;
   border-color: transparent;
   box-shadow: var(--shadow-sm);
 }
@@ -258,7 +262,7 @@ p {
 .btn-gold:hover,
 .btn-primary:hover {
   filter: brightness(1.05);
-  color: var(--green-dark);
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -285,7 +289,7 @@ html[data-theme="dark"] .btn-secondary {
 html[data-theme="dark"] .btn-outline:hover,
 html[data-theme="dark"] .btn-secondary:hover {
   background: var(--gold);
-  color: var(--green-dark);
+  color: #fff;
 }
 
 .btn-green {
@@ -532,7 +536,8 @@ html[data-theme="dark"] .menu-toggle span {
   border: 2px solid var(--border-strong);
   box-shadow: var(--shadow-md);
   background: var(--surface);
-  margin: 0.5rem 0 1.75rem;
+  margin: 0.5rem auto 1.75rem;
+  max-width: 680px;
 }
 
 .page-banner img {
@@ -869,15 +874,7 @@ html[data-theme="dark"] .toc nav a {
 }
 
 .card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--green-deep), var(--green-emerald));
-  color: var(--gold-light);
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
+  display: none;
 }
 
 .card h3,
@@ -973,20 +970,19 @@ html[data-theme="dark"] .faq-item button:hover {
 
 .faq-item button span.icon {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: var(--green-deep);
-  color: var(--gold-light);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  display: inline;
+  background: transparent;
+  color: inherit;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 .faq-item button[aria-expanded="true"] span.icon {
-  background: var(--gold);
-  color: var(--green-dark);
+  background: transparent;
+  color: inherit;
 }
 
 .faq-panel {
@@ -1061,14 +1057,14 @@ html[data-theme="dark"] .faq-item button:hover {
 .slider-slide {
   flex: 0 0 100%;
   scroll-snap-align: center;
-  max-width: 280px;
+  max-width: 220px;
   margin-inline: auto;
 }
 
 @media (min-width: 700px) {
   .slider-slide {
     flex-basis: calc(50% - 0.5rem);
-    max-width: none;
+    max-width: 220px;
     margin-inline: 0;
   }
 }
@@ -1076,6 +1072,7 @@ html[data-theme="dark"] .faq-item button:hover {
 @media (min-width: 1024px) {
   .slider-slide {
     flex-basis: calc(33.333% - 0.7rem);
+    max-width: 220px;
   }
 }
 
@@ -1219,16 +1216,19 @@ html[data-theme="dark"] .faq-item button:hover {
   color: var(--green-mint);
 }
 
-.footer-brand p {
-  color: var(--green-mint);
-  opacity: 0.9;
+.footer-brand p,
+.site-footer p {
+  color: #fff;
+  opacity: 1;
   max-width: 32ch;
   font-size: 0.92rem;
 }
 
+.site-footer h3,
+.footer-col h3,
 .footer-col h4 {
   font-family: var(--font-display);
-  color: var(--gold-light);
+  color: #fff;
   font-size: 1rem;
   margin: 0 0 0.85rem;
 }
@@ -1254,14 +1254,15 @@ html[data-theme="dark"] .faq-item button:hover {
 .footer-legal {
   border-top: 1px solid rgba(167, 243, 208, 0.2);
   padding: 1.25rem 0 1.5rem;
-  color: var(--green-mint);
+  color: #fff;
   font-size: 0.88rem;
 }
 
 .footer-legal p {
-  color: var(--green-mint);
-  opacity: 0.85;
+  color: #fff;
+  opacity: 1;
   margin-bottom: 0.55rem;
+  max-width: none;
 }
 
 /* ========== BACK TO TOP ========== */

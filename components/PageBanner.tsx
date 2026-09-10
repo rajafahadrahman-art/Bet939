@@ -23,7 +23,7 @@ export default function PageBanner({
         title={title}
         width={width}
         height={height}
-        sizes="(max-width: 1120px) 100vw, 1120px"
+        sizes="(max-width: 680px) 100vw, 680px"
         priority={priority}
       />
     </div>
