@@ -21,21 +21,13 @@ Open the app.
 Tap Register or Sign Up.
 Enter an active mobile number.
 Create a strong password.
-Enter a referral code only when you have a valid one.
-Request an OTP if required.
-Enter the verification code.
 Read and accept the available terms.
-Complete registration.
-Save your login details safely.
-Use your own active phone number because it may be needed for password recovery.
+After clicking on register button below you will be registered.
 Bet939 Game Login Steps
-Open the game app.
-Tap Login.
+Open the game login section.
 Enter your registered mobile number.
 Type the correct password.
-Complete OTP verification if requested.
-Tap the login button.
-Wait for the dashboard to load.
+Tap the login button to start.
 Users who have not installed the app can follow the complete Bet939 Game Download guide before creating or accessing an account. iPhone and iPad users can follow the iOS guide and users who want to access their account on a laptop can visit PC guide.
 Common Bet939 Login Issues and Fixes
 
@@ -47,7 +39,6 @@ Request the verification code.
 Enter the OTP.
 Create a new password.
 Log in again.
-Do not use the same password as your mobile wallet or email.
 OTP Not Received
 Check the mobile number
 Make sure the SIM has a signal
