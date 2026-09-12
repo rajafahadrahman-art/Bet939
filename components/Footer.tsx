@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Link href="/" className="brand" aria-label="Bet939 Game home">
+          <Link href="/" className="brand">
             <Image
               src={LOGO_PATH}
               alt={LOGO_ALT}

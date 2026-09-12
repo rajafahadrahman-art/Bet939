@@ -138,7 +138,7 @@ export default function ScreenshotGallery({
                   alt={item.alt}
                   width={item.width}
                   height={item.height}
-                  sizes="(max-width: 700px) 70vw, 220px"
+                  sizes="218px"
                   loading="lazy"
                 />
               </button>
@@ -154,7 +154,7 @@ export default function ScreenshotGallery({
           >
             ‹
           </button>
-          <div className="slider-dots" role="tablist" aria-label="Screenshot pages">
+          <div className="slider-dots" role="group" aria-label="Screenshot pages">
             {items.map((item, dotIndex) => (
               <button
                 key={item.src}

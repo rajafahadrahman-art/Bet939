@@ -55,14 +55,13 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link href="/" className="brand" aria-label="Bet939 Game home">
+        <Link href="/" className="brand">
           <Image
             src={LOGO_PATH}
             alt={LOGO_ALT}
             title={LOGO_TITLE}
             width={40}
             height={40}
-            priority
           />
           <span>
             Bet939
