@@ -94,76 +94,18 @@ Plinko
 Super Fruit Slots
 This category includes a mix of slot games, crash games and quick-play options.
 Slots
-Slot games normally use reels and matching symbols. Some titles may include free spins, wild symbols, multipliers, bonus rounds or jackpot-style features.
-Available Games:
-JILI Slots
-WG Slots
-PG Slots
-JDB Slots
-PP Slots
-CQ9 Slots
-BBIN Slots
-FC Slots
+Slot games normally use reels and matching symbols. Some titles may include free spins, wild symbols, multipliers, bonus rounds or jackpot style features.
 Mini Games
 Mini Games are short and fast titles that normally have simple controls. These games are suitable for users who prefer quick rounds instead of long card or live-table sessions.
-These games are available on platform.
-WG Mini Games
-Spribe Mini Games
-JILI Mini Games
-T1 Mini Games
-MW Mini Games
-MG Mini Games
-BGaming Mini Games
-InOut Mini Games
-Turbo Mini Games
-Funky Mini Games
-
 Fishing Games
-Fishing Games use arcade-style controls where players aim at fish and other moving targets. Different targets may have different values, speeds and difficulty levels.
-Available fishing providers include:
-JILI Fishing
-JDB Fishing
-Yellow Bat Fishing
-FC Fishing
-WG Fishing
-Dragon Soft Fishing
-MG Fishing
-YGR Fishing
+Fishing Games use arcade-style controls where players aim at fish and other moving targets. Different targets may have different values, speeds and difficulty levels. Available fishing providers include:
 Live Games
-The Live Games category gives users access to table games with live video. These games may include real dealers, live rooms and different betting tables.
-Available live-game providers include:
-PP Live
-Ezugi Live
-BBIN Live
-Sexy Live
-EVO Live
-W Live
-Available tables may include baccarat, roulette, Dragon Tiger, blackjack and other live dealer games.
+The Live Games category gives users access to table games with live video. These games may include real dealers, live rooms and different betting tables. Available live-game providers include:
+* Available tables may include baccarat, roulette, Dragon Tiger, blackjack and other live dealer games.
 Card Games
-The Card Games section includes traditional and modern card-based titles from different providers. These games are suitable for users who prefer cards instead of slots or crash games.
-Available card-game providers include:
-WG Cards
-JILI Cards
-King Midas Cards
-HB Cards
-MW Cards
-MG Cards
-2J Cards
-BGaming Cards
-Funky Games Cards
+The Card Games section includes traditional and modern card-based titles from different providers. These games are suitable for users who prefer cards instead of slots or crash games. Available card-game providers include:
 Sports
-The Sports category is made for users who want to explore sports markets and event-based options inside the platform.
-Available sports providers include:
-9Wicket Sports
-WG Sports
-SABA Sports
-IM Sports
-3 Sing Sports
-Panda Sports
-FB Sports
-New BBIN Sports
-BTI Sports
-Now Sports
+The Sports category is made for users who want to explore live sports games like PSL, FIFA and event-based options inside the platform.
 
 Bonuses and Rewards
 This real gaming platform offers different promotions for new and existing users. Offers can change without notice, so always confirm the current terms inside the app.
