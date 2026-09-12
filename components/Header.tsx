@@ -55,7 +55,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link href="/" className="brand" aria-label="Bet939 Game Pakistan home">
+        <Link href="/" className="brand">
           <Image
             src={LOGO_PATH}
             alt={LOGO_ALT}

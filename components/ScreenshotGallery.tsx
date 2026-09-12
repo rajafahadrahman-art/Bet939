@@ -138,7 +138,7 @@ export default function ScreenshotGallery({
                   alt={item.alt}
                   width={item.width}
                   height={item.height}
-                  sizes="220px"
+                  sizes="218px"
                   loading="lazy"
                 />
               </button>
