@@ -25,6 +25,8 @@ export default function PageBanner({
         height={height}
         sizes="(max-width: 680px) 100vw, 680px"
         priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding={priority ? "sync" : "async"}
       />
     </div>
   );
