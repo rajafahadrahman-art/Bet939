@@ -53,8 +53,11 @@ const FEATURE_TITLES = new Set([
   "Mobile-Friendly Performance",
   "Transaction History",
   "Login Security",
+  "Safety and Security",
   "Promotion Section",
+  "High Rewards and Promotions",
   "Customer Support Access",
+  "24/7 Customer Support",
   "Regular Updates",
 ]);
 
