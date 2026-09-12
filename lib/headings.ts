@@ -16,6 +16,7 @@ export const PAGE_HEADINGS: Record<ContentPageKey, HeadingDefinition[]> = {
     { text: "Main Features of Game", level: 2 },
     { text: "Simple Mobile Dashboard", level: 3 },
     { text: "Multiple Game Categories", level: 3 },
+    { text: "Local Wallet Support", level: 3 },
     { text: "Account and Wallet System", level: 3 },
     { text: "Live Gaming Options", level: 3 },
     { text: "Mobile-Friendly Performance", level: 3 },
