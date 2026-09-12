@@ -33,7 +33,6 @@ Android 5.0 and above
 Price
 Free to download
 Bet939 Game Download Requirements
-Before starting, make sure:
 Your phone has enough free storage
 The Android version meets the requirement
 Your internet connection is stable
@@ -66,23 +65,6 @@ Open Special App Access.
 Select Install Unknown Apps.
 Choose your browser or file manager.
 Enable Allow From This Source.
-How to Update Apk to the Latest Version
-If a new version is available:
-Confirm that your account details are saved.
-Download the current APK from the verified page.
-Open the new file.
-Tap Update when Android shows the option.
-Wait for installation to complete.
-Open the app and check your account.
-In many cases, installing the new APK over the old version keeps the account data. Do not uninstall first unless an error makes it necessary.
-APK Permissions
-The app may request permissions depending on its features. Read each request before accepting it.
-Possible permissions can include:
-Internet access
-Notifications
-Storage access for updates
-Camera access for verification
-Photo access for uploading documents
 Common Downloading Issues and Fixes
 APK Not Installing
 Try these solutions:
