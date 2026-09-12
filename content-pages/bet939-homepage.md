@@ -266,6 +266,7 @@ Is Bet 939 Safe or Not?
 Yes this platform is safe if you know how to play responsibly. Any real-money gaming app is not safe if you take it as a permanent source of income and invest much more than your limits. It is a luck based game app, you can win a huge amount or you can lose.
 This app is safe and you can download it. This platform does not take your personnel information.
 Never install a modified APK that promises unlimited balance, guaranteed wins or bonus hacking. Such files can contain malware or steal account information.
+Advantages and Disadvantages
 Benefits
 Multiple game categories in one place
 Mobile-focused interface

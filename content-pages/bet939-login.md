@@ -69,6 +69,8 @@ Log out from a borrowed device
 Do not buy accounts from another person
 Ignore fake support messages
 Check transaction history regularly
+Conclusion
+New users can register an account, and existing users can log in using their account details. If you face a login or registration issue, follow the correct steps in this guide to complete the process.
 Frequently Asked Questions
 Can I log in without registering?
 No. You need a registered account before using Bet939 Login.

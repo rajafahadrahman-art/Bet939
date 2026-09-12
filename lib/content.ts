@@ -230,6 +230,13 @@ function collectBlocks(
       continue;
     }
 
+    if (line === "For complete deposit instructions, read the complete deposit guide.") {
+      flushList();
+      flushParagraph();
+      buffer.push(line);
+      continue;
+    }
+
     const explicitList = /^[-*•]\s+/.test(line) || /^\d+\.\s+/.test(line);
     const shortStep = line.length <= 110 && !line.includes(". ");
     const continueList = listBuffer.length > 0 && shortStep;
@@ -489,6 +496,8 @@ function usefulH3(title: string, key: ContentPageKey): boolean {
       "Login Process",
       "How to Deposit Money",
       "How to Withdraw Money",
+      "Benefits",
+      "Possible Limitations",
     ].includes(title);
   }
   return true;
