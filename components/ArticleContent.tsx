@@ -48,6 +48,7 @@ const SCREENSHOTS = [
 const FEATURE_TITLES = new Set([
   "Simple Mobile Dashboard",
   "Multiple Game Categories",
+  "Local Wallet Support",
   "Account and Wallet System",
   "Live Gaming Options",
   "Mobile-Friendly Performance",
